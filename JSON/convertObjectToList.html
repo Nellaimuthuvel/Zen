@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body >
+ <script>
+
+   var object1={
+     "1":"ISRO",
+     "2": 35,
+     "3":"Scientist"  
+   };
+
+   converobjectstolist=()=>{
+    console.log(Object.entries(object1).map(([k,v])=>[+k,v]));//key as int
+
+return Object.entries(object1);//as 1st key as string
+};
+  
+var f =converobjectstolist()
+console.log(f);
+
+ </script>
+           
+</body>
+</html>
