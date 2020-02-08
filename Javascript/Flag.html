@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body onload='showDataWithImages()'>
+  <style>
+    .container{
+    display: grid;
+}
+#output {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+ fixed img{
+    width: 100px;
+
+    height:100px ;
+    transform: rotateY(180deg);
+
+} 
+  </style>
+
+    <script>
+
+
+function showDataWithImages() {
+fetch('https://restcountries.eu/rest/v2/all')
+    .then(res => res.json())
+    .then((out) => {
+      for (var i=0;i<20;i++)
+      {
+        var div = document.getElementById('container');   
+        var divRight = document.createElement('div');
+        
+       divRight.id=out[i].name
+       divRight.style.height = "150px"; 
+       divRight.style.width = "150px"; 
+      var img = document.createElement('img');    // Create an <img> element.
+        img.src = out[i].flag; 
+        img.id=i;
+        img.setAttribute("onclick","valid(this.id);");
+        img.setAttribute('width',200)
+        img.setAttribute('height',200)
+        img.alt=i;        
+        divRight.appendChild(img);
+        div.appendChild(divRight);     
+                }       
+}).catch(err => console.error(err));
+    }
+
+ function valid(clikckedid)
+ {  
+   fetch('https://restcountries.eu/rest/v2/all')
+     .then(res => res.json())
+     .then((out) =>
+      {
+       b = out[clikckedid]
+       var outputText=(b.name+" "+b.alpha2Code+" "+b.capital+" "+b.borders)
+       document.getElementById("output").innerHTML=outputText;
+
+     } )
+ }
+        </script>
+
+        <div class="testn" id="container">
+          <div id="output" ></div>
+        </div>
+
+           
+</body>
+</html>
