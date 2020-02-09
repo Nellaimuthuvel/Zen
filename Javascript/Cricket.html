@@ -77,7 +77,32 @@ function buildTable(data) {
     table.appendChild(tbody);             
     return table;
 }
-
+function buildTable1(data) {
+    var table = document.createElement("table");
+    table.className="gridtable";
+    table.id="test1";
+    var thead = document.createElement("thead");
+    var tbody = document.createElement("tbody");
+    var headRow = document.createElement("tr");
+    ["Name","Score"].forEach(function(el) {
+      var th=document.createElement("th");
+      th.appendChild(document.createTextNode(el));
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead); 
+    data.forEach(function(el) {
+      var tr = document.createElement("tr");
+      for (var o in el) {  
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(el[o]))
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);  
+    });
+    table.appendChild(tbody);             
+    return table;
+}
 var TeamA = [
   {"name":"Sac","score":0},
   {"name":"Shwe","score":0},
@@ -109,8 +134,8 @@ var TeamB = [
 ];
 
 window.onload=function() {
-  document.getElementById("content").appendChild(buildTable(TeamA));
-  document.getElementById("B").appendChild(buildTable(TeamB));
+  document.getElementById("content").appendChild(buildTable(TeamA,1));
+  document.getElementById("B").appendChild(buildTable1(TeamB));
 
  }
 var total = 0;
@@ -170,7 +195,7 @@ else
 {
   document.getElementById('demo1').value = total1;
   TeamB[i1]["score"]=total1;
-  var myTable1=document.getElementById('test');
+  var myTable1=document.getElementById("test1");
 myTable1.rows[i1+1].cells.item(1).innerHTML= total1;
 
 total1=0;
@@ -178,7 +203,7 @@ i1 = i1+1;
 }
 }
 else{
-  ed.disabled = true;
+  ed1.disabled = true;
     var sum1 = 0;
     var j1=0;
 while(j1<11)    
