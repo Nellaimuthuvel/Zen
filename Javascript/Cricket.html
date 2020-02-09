@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body >
+
+<style>
+        table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 4px;
+	border-color: #666666;
+	border-collapse: collapse;
+  float: left;
+  padding: 15px;
+  margin-top: 25px;
+width: 40%;
+}
+table.gridtable th {
+	border-width: 4px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #69e0d0;
+}
+.button2 {background-color: #008CBA;} /* Blue */
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  /*padding: 15px 32px;*/
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+    </style>
+ <script>
+function buildTable(data) {
+    var table = document.createElement("table");
+    table.className="gridtable";
+    table.id="test";
+    var thead = document.createElement("thead");
+    var tbody = document.createElement("tbody");
+    var headRow = document.createElement("tr");
+    ["Name","Score"].forEach(function(el) {
+      var th=document.createElement("th");
+      th.appendChild(document.createTextNode(el));
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead); 
+    data.forEach(function(el) {
+      var tr = document.createElement("tr");
+      for (var o in el) {  
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(el[o]))
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);  
+    });
+    table.appendChild(tbody);             
+    return table;
+}
+
+var TeamA = [
+  {"name":"Sac","score":0},
+  {"name":"Shwe","score":0},
+  {"name":"Gam","score":0},
+  {"name":"DHn","score":0},
+  {"name":"Yuv","score":0},
+  {"name":"Kho","score":0},
+  {"name":"Jadd","score":0},
+  {"name":"Akr","score":0},
+   {"name":"Zak","score":0},
+  {"name":"Kum","score":0},
+  {"name":"Bhuvi","score":0},
+  {"name":"Prav","score":0}
+];
+
+var TeamB = [
+  {"name":"Gil","score":0},
+  {"name":"Hay","score":0},
+  {"name":"Lan","score":0},
+  {"name":"Symn","score":0},
+  {"name":"Bhev","score":0},
+  {"name":"Haddi","score":0},
+  {"name":"Wal","score":0},
+  {"name":"Suni","score":0},
+  {"name":"Mcg","score":0},
+  {"name":"Lee","score":0},
+  {"name":"Brad","score":0},
+  {"name":"Rog","score":0}
+];
+
+window.onload=function() {
+  document.getElementById("content").appendChild(buildTable(TeamA));
+  document.getElementById("B").appendChild(buildTable(TeamB));
+
+ }
+var total = 0;
+var i=0;
+var click=0;
+function getRndInteger(min, max) 
+{
+click=click +1;
+if (click!=30)
+{
+
+var test =Math.floor(Math.random() * (max - min)) + min;
+if (test!=0)
+{
+  total = total +test;
+}
+else
+{
+  document.getElementById('demo').value = total;
+  TeamA[i]["score"]=total;
+  var myTable=document.getElementById('test');
+myTable.rows[i+1].cells.item(1).innerHTML= total;
+
+total=0;
+i = i+1;
+}
+}
+else{
+  ed.disabled = true;
+    var sum = 0;
+    var j=0;
+while(j<11)    
+{        
+            sum +=  TeamA[j]["score"];
+j = j+1;
+    }
+  document.getElementById('end').value = sum;
+}
+
+}
+
+var total1 = 0;
+var i1=0;
+var click1=0;
+function getRndInteger1(min, max) 
+{
+click1=click1 +1;
+if (click1!=30)
+{
+
+var test1 =Math.floor(Math.random() * (max - min)) + min;
+if (test1!=0)
+{
+  total1 = total1 +test1;
+}
+else
+{
+  document.getElementById('demo1').value = total1;
+  TeamB[i1]["score"]=total1;
+  var myTable1=document.getElementById('test');
+myTable1.rows[i1+1].cells.item(1).innerHTML= total1;
+
+total1=0;
+i1 = i1+1;
+}
+}
+else{
+  ed.disabled = true;
+    var sum1 = 0;
+    var j1=0;
+while(j1<11)    
+{        
+            sum1 +=  TeamB[j1]["score"];
+j1 = j1+1;
+    }
+  document.getElementById('end1').value = sum1;
+}
+
+}
+ </script>
+  Count: <input type="text"  id="demo" size="2px">
+  End(Score): <input type="text"  id="end" size="2px">
+
+  <button onclick="getRndInteger(0,6)" id="ed" class="button button2">Bat</button>
+
+ <div id="content">
+ </div>
+ <div id="B">
+</div>
+ Count: <input type="text"  id="demo1" size="2px">
+ End(Score): <input type="text"  id="end1" size="2px">
+ <button onclick="getRndInteger1(0,6)" id="ed1" class="button button2">Bat</button>
+
+
+</body> 
+</html>
