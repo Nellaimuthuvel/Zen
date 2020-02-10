@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body >
+
+<style>
+        table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 4px;
+	border-color: #666666;
+	border-collapse: collapse;
+  float: left;
+  padding: 15px;
+  margin-top: 25px;
+width: 40%;
+}
+table.gridtable th {
+	border-width: 4px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #69e0d0;
+}
+.button2 {background-color: #008CBA;} /* Blue */
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  /*padding: 15px 32px;*/
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+    </style>
+     <script>
+
+class team{
+    players = [
+      {"name":"Sac","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Shwe","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Gam","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"DHn","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Yuv","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Kho","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Jadd","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Akr","score":0,"click":0,"fours":0,"sixes":0},
+   {"name":"Zak","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Kum","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Bhuvi","score":0,"click":0,"fours":0,"sixes":0},
+  {"name":"Prav","score":0,"click":0,"fours":0,"sixes":0}
+];
+   setscore(){
+       
+       var count = 0;
+       for(var i=0;i<=30;i++){
+        var score =Math.floor(Math.random() * (6 - 0)) + 0;
+           if (score == 0){
+               this.players[count]["score"]=this.players[count]["score"]+score;
+               this.players[count]["click"]+=1
+               count += 1
+           }
+           else if (score == 4){
+              this.players[count]["score"]+= score;
+               this.players[count]["click"]+= 1; 
+               this.players[count]["fours"]+= 1
+
+           }
+           else if (score == 6){
+               this.players[count]["score"] += score;
+               this.players[count]["click"] += 1;
+               this.players[count]["sixes"] += 1;
+           }
+           else{
+               this.players[count]["score"]+= score;
+               this.players[count]["balls"]+= 1;
+           }
+       }
+   }
+   getscore(){
+       for (var i=0;i<11;i++){
+           
+           console.log(this.players[i][i],this.players[i]["score"],this.players[i]["click"])
+       }
+   }
+   getteamscore(){
+       var total = 0
+        for(var i=0;i<11;i++){
+            total += this.players[i]["score"];
+        }
+        return total;
+
+   }
+   getSummary()
+    {
+
+        for(var i=0;i<11;i++)
+        {
+            console.log("PlayerName"+this.players[i]["name"],"score:"+this.players[i]["score"],"click:"+this.players[i]["click"],"Fours:"+this.players[i]["fours"],"Sixes:"+this.players[i]["sixes"])
+        }
+    }
+    
+}
+var teamA = new team();
+teamA.setscore();
+var teamAscore = teamA.getteamscore();
+teamA.getSummary();
+console.log("TeamA Score:",teamAscore);
+var teamB = new team();
+teamB.setscore();
+var teamBscore = teamB.getteamscore();
+teamB.getSummary();
+console.log("TeamB score:",teamBscore);
+if (teamAscore > teamBscore){
+    console.log("TeamA");
+} 
+else{
+    console.log("TeamB");
+}
+</script>
+</body> 
+</html>
