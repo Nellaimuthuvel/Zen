@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body >
+
+<style>
+        table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 4px;
+	border-color: #666666;
+	border-collapse: collapse;
+  float: left;
+  padding: 15px;
+  margin-top: 25px;
+width: 40%;
+}
+table.gridtable th {
+	border-width: 4px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #69e0d0;
+}
+.button2 {background-color: #008CBA;} /* Blue */
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  /*padding: 15px 32px;*/
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+    </style>
+ <script>
+function buildTable(data) {
+ 
+   var table = document.createElement("table");
+    table.className="gridtable";
+    table.id="test";
+    var thead = document.createElement("thead");
+    var tbody = document.createElement("tbody");
+    var headRow = document.createElement("tr");
+    ["Name","Score","Click"].forEach(function(el) {
+      var th=document.createElement("th");
+      th.appendChild(document.createTextNode(el));
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead); 
+    data.forEach(function(el) {
+      var tr = document.createElement("tr");
+      for (var o in el) {  
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(el[o]))
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);  
+    });
+    var button = document.createElement('input');
+  button.setAttribute('type', 'button');
+  button.setAttribute('value', 'Bat');
+  button.setAttribute('id', 'bat');
+
+  
+  button.setAttribute('class','button button2')
+  document.body.appendChild(button);
+    table.appendChild(tbody);             
+    return table;
+    
+}
+function buildTable1(data) {
+    var table = document.createElement("table");
+    table.className="gridtable";
+    table.id="test1";
+    var thead = document.createElement("thead");
+    var tbody = document.createElement("tbody");
+    var headRow = document.createElement("tr");
+    ["Name","Score","Click"].forEach(function(el) {
+      var th=document.createElement("th");
+      th.appendChild(document.createTextNode(el));
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead); 
+    data.forEach(function(el) {
+      var tr = document.createElement("tr");
+      for (var o in el) {  
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(el[o]))
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);  
+    });
+    table.appendChild(tbody);             
+    return table;
+}
+class match
+{
+TeamA= new Team("INDIA");
+TeamB = new Team("AUSTRALIA");
+Team =[this.TeamA,this.TeamB];
+currentTeam = 0;
+
+bat()
+{
+  if (this.currentTeam<=1)
+  {
+  var b=this.Team[this.currentTeam].bat();
+if (b==-1){
+  this.currentTeam = this.currentTeam+1;
+}
+
+}
+else{
+  console.log("Match OVer")
+}
+}
+}
+class Team
+{
+ constructor(name)
+{
+   this.name = name;
+}
+player1= new Players("player1");
+player2 = new Players("player2");
+player3 = new Players("player3");
+player4= new Players("player4");
+player5 = new Players("player5");
+player6 = new Players("player6");
+player7= new Players("player7");
+player8 = new Players("player8");
+player9 = new Players("player9");
+player10 = new Players("player10");
+players=[this.player1,this.player2,this.player3,this.player4,this.player5,this.player6,this.player7,this.player8,this.player9,this.player10];
+score = 1;
+click = 0;
+currentplayer=0;
+currentTeam=0;
+bat()
+{
+  this.click+=1;
+
+  if (this.click <=30)
+{
+  if (this.score!=0)
+{
+    var x=this.players[this.currentplayer].bat();
+if(x==0)
+{
+  this.currentplayer+=1;
+}
+}
+}
+else{
+  return -1;
+
+}
+
+}
+
+}
+class Players
+{
+  score=0;
+  click=0;
+  name = "";
+  constructor(name)
+  {
+    this.name = name;
+  }
+    
+bat()
+  {
+    this.click=this.click+1;
+  var current =Math.floor(Math.random() * (6 - 0)) + 0;
+  if (current==0)
+  {
+     return current;
+    }
+  else
+  {
+
+    this.score += current;
+
+  }
+
+
+  }
+
+
+}
+
+
+ </script>
+  Count: <input type="text"  id="demo" size="2px">
+  End(Score): <input type="text"  id="end" size="2px">
+
+  Count: <input type="text"  id="demo" size="2px">
+  End(Score): <input type="text"  id="end" size="2px">
+  <button onclick="display" id="dip" class="button button2">Display</button>
+
+ <div id="content">
+ </div>
+ <div id="B">
+</div>
+ 
+<div>
+</div>
+
+</body> 
+</html>
