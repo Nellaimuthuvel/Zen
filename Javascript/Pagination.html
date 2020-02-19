@@ -10,19 +10,38 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
  
     </head>
-    <body class ="test" id = "body" onload=test(0)>
+    <body class ="test" id = "body" onload=test()>
         <script src = "pagination_data.js"></script>
         <script>
-            function test(x)     
-            {
+            function test()     
+{
             var bod = document.getElementById('body');
     //main container division
     var maindiv = document.createElement('div');
     maindiv.setAttribute('class','container-fluid');
     bod.appendChild(maindiv);
     maindiv.appendChild(buildTable(json))
+    var divs = document.createElement('div');
+    var ul = document.createElement("ul");
+    for(i=0;i<20;i++)
+    {
+    var li = document.createElement("LI");
+    li.setAttribute('class','page-link')
+    li.setAttribute('style','justifyContent = "center"')
 
-    function buildTable(data) {
+    ul.setAttribute('class','pagination pagination-sm');
+    var a = document.createElement("a");
+    a.setAttribute("onclick","d("+i+")");
+    a.setAttribute('class','page-link')
+    a.innerHTML=i+1;
+    li.appendChild(a); 
+   ul.appendChild(li);
+   divs.appendChild(ul);    
+    }
+    bod.appendChild(divs);
+
+    function buildTable(data) 
+    {
     var table = document.createElement("table");
     table.setAttribute('id','table')
     table.className="table table-bordered  table-striped table-responsive-sm";
@@ -36,9 +55,9 @@
       headRow.appendChild(th);
     });
     thead.appendChild(headRow);
-    
     table.appendChild(thead);
-    var data1= []
+    var data1= [];
+    x=0;
     for(i=(x*5);i<((x*5)+5);i++)
     {
         data1.push(data[i])
@@ -55,7 +74,9 @@
     table.appendChild(tbody);             
     return table;
     
-} }      
+}
+
+}      
 function d(x)
 {
     var table = document.getElementById("table")
@@ -70,27 +91,6 @@ function d(x)
 }
 
 </script>
-        <ul class="pagination">
-            <li><button onclick = d(0)>1</button></li>
-            <li><button onclick = d(1)>2</button></li>
-            <li><button onclick = d(2)>3</button></li>
-            <li><button onclick = d(3)>4</button></li>
-            <li><button onclick = d(4)>5</button></li>
-            <li><button onclick = d(5)>6</button></li>
-            <li><button onclick = d(6)>7</button></li>
-            <li><button onclick = d(7)>8</button></li>
-            <li><button onclick = d(8)>9</button></li>
-            <li><button onclick = d(9)>10</button></li>
-            <li><button onclick = d(10)>11</button></li>
-            <li><button onclick = d(11)>12</button></li>
-            <li><button onclick = d(12)>13</button></li>
-            <li><button onclick = d(13)>14</button></li>
-            <li><button onclick = d(14)>15</button></li>
-            <li><button onclick = d(15)>16</button></li>
-            <li><button onclick = d(16)>17</button></li>
-            <li><button onclick = d(17)>18</button></li>
-            <li><button onclick = d(18)>19</button></li>
-            <li><button onclick = d(19)>20</button></li>
-          </ul>
+        
     </body>
 </html>
