@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TT</title>
+
+    </head>
+<body  id='body'>
+    <script>
+      var input = [
+     {
+          "id": 1,
+          "title": "Title 1",
+          "childrens": [
+               {
+                    "id": 2,
+                    "title": "Title 2",
+                    "childrens": []
+               }
+          ]
+     },
+     {
+          "id": 3,
+          "title": "Title 3",
+          "childrens": [
+               {
+                    "id": 4,
+                    "title": "Title 4",
+                    "childrens": [
+                         {
+                              "id": 5,
+                              "title": "Title 5",
+                              "childrens": []
+                         }
+                    ]
+               }
+          ]
+     }
+]
+/* var json={};
+var arr=[];
+json=((input[0].childrens[0]));
+
+
+input.push(json)
+
+
+console.log(input) */ 
+
+
+
+var output = [];
+
+function outputArray(inputArray){
+    inputArray.forEach(element =>{
+    dict = {
+            id : element.id,
+            title : element.title,
+            childrens : [],
+            };
+    output.push(dict);
+    if(element.childrens.length > 0){
+            outputArray(element.childrens);
+    }        
+    })
+}
+
+outputArray(input);
+console.log(output);
+
+
+
+
+    </script>
+</body>
+</html>
