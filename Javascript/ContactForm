@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+        table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size:11px;
+        color:#333333;
+        border-width: 4px;
+        border-color: #666666;
+        border-collapse: collapse;
+      float: left;
+      padding: 15px;
+      margin-top: 25px;
+    width: 40%;
+    }
+    table.gridtable th {
+        border-width: 4px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #dedede;
+    }
+    table.gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #69e0d0;
+    }
+   
+    .split {
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+    .left {
+      left: 0;
+    /* background-color:lightgray;*/
+    }
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .right {
+  right: 0;
+  background-color: lightgoldenrodyellow;
+}
+
+    </style>
+    </head>
+
+   
+<body onload='test()'>
+   
+    <script>
+var isEdit = false;
+      var editIndex;
+      function buildTable(data) 
+      {
+
+ var table = document.createElement("table");
+  table.className="gridtable";
+  table.id="test";
+  var thead = document.createElement("thead");
+  var tbody = document.createElement("tbody");
+  tbody.setAttribute("id","tablebody");
+
+  var headRow = document.createElement("tr");
+  ["ID","Name","Email","Pswd","RetypePswd","Country","State","City","Gender","delete","edit"].forEach(function(el) {
+    var th=document.createElement("th");
+    th.appendChild(document.createTextNode(el));
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  table.appendChild(thead); 
+  data.forEach(function(el,index) {
+   // index = data[id]
+    var tr = document.createElement("tr");
+    for (var o in el) {  
+      var td = document.createElement("td");
+      td.appendChild(document.createTextNode(el[o]))
+      tr.appendChild(td);
+      
+    }
+    var btn = document.createElement("BUTTON");
+    btn.innerHTML = "Delete"
+    btn.setAttribute("onclick","rowdelete("+ index +")");
+
+    var td = document.createElement("td");
+    td.appendChild(btn); 
+    tr.appendChild(td) 
+
+    var btn1 = document.createElement("BUTTON");
+    btn1.innerHTML = "Edit"
+    btn1.setAttribute("onclick","rowedit("+ index +")");
+
+    var td1 = document.createElement("td");
+    td1.appendChild(btn1); 
+    tr.appendChild(td1) 
+
+    tbody.appendChild(tr);  
+  });
+
+  table.appendChild(tbody);             
+  return table;
+  
+}
+function rowdelete(index) 
+{
+        let result = confirm("Are you sure do you want to delete?");
+        if (result) 
+        {
+          document.getElementById("test").remove()
+
+          movies.splice(index, 1);
+          document.getElementById("right").appendChild(buildTable(movies));
+
+        }
+      }
+      function rowedit(index) {
+        document.getElementById("dname").value = movies[index].Name;
+        document.getElementById("demail").value = movies[index].Email;
+        document.getElementById("psswd").value = movies[index].Passwd;
+        document.getElementById("repsswd").value = movies[index].RePasswd;
+        document.getElementById("count").value = movies[index].Country;
+        document.getElementById("stat").value = movies[index].State;
+        document.getElementById("city").value = movies[index].City;
+
+        document.getElementsByName("optradio").forEach(function(genderObj) 
+        {
+          if (genderObj.value == movies[index].Gender) 
+          {
+            genderObj.checked = true;
+          }
+        });
+
+        // document.getElementsByName("ms").forEach(function(msObj) {
+        //   if (msObj.value == myArray[index].ms) {
+        //     msObj.checked = true;
+        //   }
+        //\ });
+        isEdit = true;
+        editIndex = index;
+      }
+      
+        function test()
+        {
+var div = document.getElementById('maindiv');   
+var divleft = document.createElement('div');
+divleft.setAttribute('class','split left')
+divleft.setAttribute('id','left')
+
+var x = document.getElementById("form_sample");
+var createform = document.createElement('form'); 
+createform.setAttribute("name", "myform"); 
+//createform.setAttribute("action", "#"); 
+//createform.setAttribute("method", "post"); 
+x.appendChild(createform);
+var heading = document.createElement('h2'); 
+heading.innerHTML = "Contact Form ";
+createform.appendChild(heading);
+
+var line = document.createElement('hr'); 
+createform.appendChild(line);
+
+
+
+
+var table= document.createElement('table');
+table.setAttribute('cellspacing','4');
+table.setAttribute('class','table table-borderless table-dark')
+var tt = document.createElement("tbody");
+
+function addCell(tr, val) {
+    var td = document.createElement('td');
+
+    td.appendChild(val);
+
+    tr.appendChild(td);
+  }
+  function addCell1(tr, val,vals) {
+    var td = document.createElement('td');
+
+    td.appendChild(val);
+    td.appendChild(vals);
+
+
+    tr.appendChild(td);
+  }
+
+  function addRow( val_1, val_2) {
+    var tr = document.createElement('tr');
+
+    addCell(tr, val_1);
+    addCell(tr, val_2);
+tt.appendChild(tr);
+    table.appendChild(tt);
+  }
+
+  function radio( val_1, val_2,val_3) {
+    var tr = document.createElement('tr');
+
+    addCell(tr, val_1);
+    addCell1(tr, val_2,val_3);
+
+tt.appendChild(tr);
+    table.appendChild(tt);
+  }
+
+
+var namelabel = document.createElement('label');
+namelabel.setAttribute('for','dname');
+namelabel.innerHTML = "Your Name : ";
+
+var inputelement = document.createElement('input'); 
+inputelement.setAttribute("type", "text");
+inputelement.setAttribute("id", "dname");
+inputelement.setAttribute("name", "dname");
+addRow(namelabel,inputelement);
+
+
+var emaillabel = document.createElement('label'); 
+emaillabel.innerHTML = "Your Email : ";
+var emailelement = document.createElement('input');
+emailelement.setAttribute("type", "text");
+emailelement.setAttribute("name", "demail");
+emailelement.setAttribute("id", "demail");
+
+addRow(emaillabel,emailelement);
+
+
+var pswdlabel = document.createElement('label'); 
+pswdlabel.innerHTML = "Your Pswd : ";
+var psswd = document.createElement('input');
+psswd.setAttribute("type", "text");
+psswd.setAttribute("name", "psswd");
+psswd.setAttribute("id", "psswd");
+
+addRow(pswdlabel,psswd);
+
+var repswdlabel = document.createElement('label'); 
+repswdlabel.innerHTML = "Retype Pswd : ";
+var repsswd = document.createElement('input');
+repsswd.setAttribute("type", "text");
+repsswd.setAttribute("name", "repsswd");
+repsswd.setAttribute("id", "repsswd");
+
+addRow(repswdlabel,repsswd);
+
+
+var countlabel = document.createElement('label'); 
+countlabel.innerHTML = "Country : ";
+var country = document.createElement('select');
+country.setAttribute("id","count")
+var x = document.createElement("OPTION");
+var x1 = document.createElement("OPTION");
+
+x.setAttribute("value", "India");
+var t = document.createTextNode("India");
+x.appendChild(t);
+country.appendChild(x);
+
+x1.setAttribute("value", "Australia");
+var t = document.createTextNode("Australia");
+x1.appendChild(t);
+country.appendChild(x1);
+addRow(countlabel,country);
+
+
+var statelabel = document.createElement('label'); 
+statelabel.innerHTML = "State : ";
+var state = document.createElement('select');
+state.setAttribute("id","stat")
+var x = document.createElement("OPTION");
+var x1 = document.createElement("OPTION");
+
+x.setAttribute("value", "Delhi");
+var t = document.createTextNode("Delhi");
+x.appendChild(t);
+state.appendChild(x);
+
+x1.setAttribute("value", "Gujarat");
+var t = document.createTextNode("Gujarat");
+x1.appendChild(t);
+state.appendChild(x1);
+addRow(statelabel,state);
+
+var citylabel = document.createElement('label'); 
+citylabel.innerHTML = "City : ";
+var city = document.createElement('select');
+city.setAttribute("id","city")
+var x = document.createElement("OPTION");
+var x1 = document.createElement("OPTION");
+
+x.setAttribute("value", "Ramnagar");
+var t = document.createTextNode("Ramnagar");
+x.appendChild(t);
+city.appendChild(x);
+
+x1.setAttribute("value", "DL-north");
+var t = document.createTextNode("DL-north");
+x1.appendChild(t);
+city.appendChild(x1);
+addRow(citylabel,city);
+
+
+
+var genderlabel = document.createElement('label'); 
+genderlabel.innerHTML = "Gender : ";
+
+var optionlabel = document.createElement('label'); 
+optionlabel.setAttribute('class','custom-control-label')
+var t = document.createTextNode("Male");
+optionlabel.appendChild(t);
+
+var gender = document.createElement('input');
+gender.setAttribute("type","radio");
+gender.setAttribute("name","optradio");
+gender.setAttribute("value","Male");
+
+gender.setAttribute('class','custom-control-input')
+optionlabel.appendChild(gender);
+
+//gender.innerText="Male";
+
+var td = document.createElement('td');
+var tr = document.createElement('tr');
+
+td.appendChild(genderlabel);
+td.appendChild(optionlabel);
+
+tr.appendChild(td);
+var optionlabel1 = document.createElement('label'); 
+optionlabel1.setAttribute('class','custom-control-label')
+var t1 = document.createTextNode("Female");
+optionlabel1.appendChild(t1);
+var gender1 = document.createElement('input');
+gender1.setAttribute("type","radio");
+gender1.setAttribute("name","optradio");
+gender1.setAttribute("value","Female");
+
+gender1.setAttribute('class','custom-control-input')
+optionlabel1.appendChild(gender1);
+tr.appendChild(td);
+td.appendChild(optionlabel1);
+tt.appendChild(td)
+table.appendChild(tt);
+
+createform.appendChild(table);
+
+var submitcenter = document.createElement('div');
+submitcenter.setAttribute('style',"text-align: center")
+var submitelement = document.getElementById('btn');
+
+
+submitcenter.appendChild(submitelement)
+createform.appendChild(submitcenter);
+divleft.appendChild(createform);
+var  centered = document.createElement('div');
+centered.setAttribute('class','centered')
+divleft.appendChild(centered);
+div.appendChild(divleft);
+
+
+        var divright = document.createElement('div');
+        divright.setAttribute('class','split right')
+        divright.setAttribute('id','right')
+
+        divright.appendChild(centered);
+        div.appendChild(divright);
+        
+        
+      }
+      
+
+        document.addEventListener('DOMContentLoaded', ()=>
+        {
+            document.getElementById('btn').addEventListener('click', addMovie);
+        });
+        let movies = [];
+        const addMovie = (ev)=>{
+            ev.preventDefault();
+              //to stop the form submitting
+              if(movies!="")
+                document.getElementById("test").remove()
+
+            var gender= function() { 
+            var ele = document.getElementsByName('optradio'); 
+              
+            for(i = 0; i < ele.length; i++) { 
+                if(ele[i].checked) 
+                        return ele[i].value; 
+            } 
+        } 
+            let movie = 
+            {
+                id: Date.now(),
+                Name: document.getElementById('dname').value,
+                Email: document.getElementById('demail').value,
+                Passwd: document.getElementById('psswd').value,
+                RePasswd: document.getElementById('repsswd').value,
+                Country: document.getElementById('count').value,
+                State: document.getElementById('stat').value,
+                City: document.getElementById('city').value,
+                Gender: gender()
+            }
+            if (isEdit == true) 
+            {
+          movies[editIndex] = movie;
+          isEdit = false;
+        } 
+            else{
+              movies.push(movie);
+
+            }
+            document.forms[0].reset(); 
+
+            console.warn('added' , {movies} );
+
+            document.getElementById("right").appendChild(buildTable(movies));
+
+
+
+        }
+      
+        </script>
+                <div class="container" id="maindiv">
+                    <div id="form_sample"></div>
+                    <button id="btn">Click to Add</button>
+
+                    </div>
+</body>
+
+</html>
