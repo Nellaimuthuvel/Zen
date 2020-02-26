@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="random()" id='body'>
+    <script>
+                    var arr = [];
+
+        function random() {
+
+            while (arr.length < 6) {
+
+                //console.log((ans));
+
+                var ans = Math.floor(Math.random() * 10);
+                if (arr.includes(ans) == false ) {
+
+                    arr.push(ans);
+                }
+                else 
+                {
+                   return random();
+                }
+            }
+            if(arr.length==6)
+            {
+                 console.log(arr.join(''));
+            }
+
+        }
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
