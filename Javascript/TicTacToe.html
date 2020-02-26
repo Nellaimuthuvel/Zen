@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+
+    <style>
+        #body{
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 303px;width: 300px;
+    background-color:darkslategray
+}
+.row{
+    display: flex;
+    height: 100px;
+}
+.cell{
+    display: flex;
+    align-items: center;
+    border:1px solid dodgerblue;
+    width: 100px;
+    height: 100px;
+    color: white;
+    font-size: 50px;
+    justify-content: center;
+}
+    </style>
+</head>
+<body onload="divs()" id='body'>
+    <script>
+        function divs(){
+    var maindiv = document.createElement('div');
+    maindiv.className = 'container';
+    
+    var id = 1;
+    for(let i=1;i<=3;i++){
+        var div_row = document.createElement('div');
+        div_row.className = 'row';
+        div_row.id = 'row'+i;
+        for(let j=1;j<=3;j++){
+            var div_cell = document.createElement('div');
+            div_cell.className = 'cell';
+            div_cell.id = id;
+            div_cell.setAttribute('onclick','game('+div_cell.id+')');
+            div_row.appendChild(div_cell);
+            id += 1;
+        }
+        maindiv.appendChild(div_row);
+    }
+var current=document.createElement('div')
+current.id='current'
+maindiv.appendChild(current)
+
+    document.body.appendChild(maindiv);
+}
+
+var json=[]
+var click=1
+var win=false
+
+function game(x){
+    if(click%2==0){
+        document.getElementById(x).innerHTML='O'
+        document.getElementById(x).setAttribute('onclick','')
+        document.getElementById('current').innerHTML='Its X turn'
+        json[x]=0
+
+    }else{
+        document.getElementById(x).innerHTML='X'
+        document.getElementById(x).setAttribute('onclick','')
+        document.getElementById('current').innerHTML='Its O turn'
+        json[x]=1
+    }
+    if(click>4){
+        result(json)
+    }
+    click++
+}
+
+function result(valuecheck){
+    
+    if((valuecheck[1]==1 && valuecheck[2]==1 && valuecheck[3]==1)|| 
+    (valuecheck[4]==1 && valuecheck[5]==1 && valuecheck[6]==1) ||
+    (valuecheck[7]==1 && valuecheck[8]==1 && valuecheck[9]==1) ||
+    (valuecheck[1]==1 && valuecheck[4]==1 && valuecheck[7]==1) ||
+    (valuecheck[2]==1 && valuecheck[5]==1 && valuecheck[8]==1) ||
+    (valuecheck[3]==1 && valuecheck[6]==1 && valuecheck[9]==1) ||
+    (valuecheck[1]==1 && valuecheck[5]==1 && valuecheck[9]==1) ||
+    (valuecheck[3]==1 && valuecheck[5]==1 && valuecheck[7]==1) ){
+        win=true;
+        winnerstate(1)
+        stop()
+    }
+    else if((valuecheck[1]==0 && valuecheck[2]==0 && valuecheck[3]==0) ||
+    (valuecheck[4]==0 && valuecheck[5]==0 && valuecheck[6]==0) ||
+    (valuecheck[7]==0 && valuecheck[8]==0 && valuecheck[9]==0) ||
+    (valuecheck[1]==0 && valuecheck[4]==0 && valuecheck[7]==0) ||
+    (valuecheck[2]==0 && valuecheck[5]==0 && valuecheck[8]==0) ||
+    (valuecheck[3]==0 && valuecheck[6]==0 && valuecheck[9]==0) ||
+    (valuecheck[1]==0 && valuecheck[5]==0 && valuecheck[9]==0) ||
+    (valuecheck[3]==0 && valuecheck[5]==0 && valuecheck[7]==0) ){
+        win=true;
+        winnerstate(2)
+        stop()
+    }
+    else if(click==9 && win==false){
+        winnerstate(3)
+        stop()
+    }
+}
+
+function winnerstate(x){
+    if(x==1){
+        document.getElementById('current').innerHTML='X is the Winner'
+    }else if(x==2){
+        document.getElementById('current').innerHTML='O is the Winner'
+    }else{
+        document.getElementById('current').innerHTML='Match Drawn'
+    }
+}
+
+function stop(){
+    for(i=1; i<=9; i++){
+        document.getElementById(i).setAttribute('onclick','')
+    }
+}
+
+
+
+
+    </script>
+</body>
+</html>
