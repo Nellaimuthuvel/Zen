@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+i=10;
+function red() 
+{
+  console.log(i);
+   i--;
+        }
+function display(ca){
+red()
+test = setTimeout(display, 1000);
+setTimeout(ca,10000)
+}
+var test=display(function(res){
+
+console.log("Test")
+clearTimeout(test);
+});
+        
+    </script>
+</body>
+</html>
