@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+ 
+  <script type="text/javascript" src="D:\GUVI\Zen\Javascript\ShoppingCart\cart.js"></script>
+
+
+    <title>Document</title>
+    <style>
+      input  {
+  border: 2px solid red;
+  /*border: 1px solid;
+  width:90px;
+/*margin-top: 15px;*/
+
+}
+Textarea{
+  border: 1px solid #888; 
+  padding: 15px;
+  margin-top: 5px;
+width: 55%;
+}
+ table {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 4px;
+	border-color: #666666;
+	border-collapse: collapse;
+  float:initial;
+  padding: 5px;
+  margin-top: 15px;
+width: 25%;
+}
+table th {
+	border-width: 4px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #69e0d0;
+}
+    </style>
+</head>
+<body>
+  <form>
+
+<div id="parent" class="form-group">
+    <label for="fname">Product Name:</label>
+    <input type="text" id="fname1" name="fname">
+    <button type="button"  class="btn btn-primary"onclick="addBox()">Add Variants</button>
+<table class="table table-bordered table-hover table-sortable"id="dory">
+<tbody id = "tbody">
+
+</tbody>
+</table>
+<button type="button"class="btn btn-primary" onclick="Preview()">Options</button>
+<button type="button"class="btn btn-primary" id="btnData" onclick="formdata()">Submit</button>
+
+</div>
+</form>
+
+</body>
+</html>
